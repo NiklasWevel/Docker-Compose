@@ -14,7 +14,7 @@ services:
     logging:
       driver: "none"
   wiki:
-    image: ghcr.io/requarks/wiki:2
+    image: ghcr.io/requarks/wiki:2.5.307
     container_name: wiki
     restart: unless-stopped
     ports:

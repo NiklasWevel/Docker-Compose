@@ -1,6 +1,6 @@
 services:
   unpackerr:
-    image: golift/unpackerr
+    image: golift/unpackerr:0.14
     container_name: unpackerr
     restart: unless-stopped
     user: "${UID}:${GID}"

@@ -1,6 +1,6 @@
 services:
   thunderbird:
-    image: jlesage/thunderbird:latest
+    image: jlesage/thunderbird:v25.03.1
     container_name: thunderbird
     restart: unless-stopped
     ports:

@@ -1,6 +1,6 @@
 services:
   gluetun:
-    image: qmcgaw/gluetun:latest
+    image: qmcgaw/gluetun:v3.4
     container_name: gluetun
     restart: unless-stopped
     ports:
@@ -31,7 +31,7 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
   socks5:
-    image: serjs/go-socks5-proxy
+    image: serjs/go-socks5-proxy:v0.0.3
     container_name: socks5
     restart: unless-stopped
     network_mode: "service:gluetun"

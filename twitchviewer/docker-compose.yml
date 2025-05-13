@@ -1,6 +1,6 @@
 services:
   miner:
-    image: rdavidoff/twitch-channel-points-miner-v2:latest
+    image: rdavidoff/twitch-channel-points-miner-v2:1.9.9
     container_name: twitch-viewer
     restart: unless-stopped
     ports:

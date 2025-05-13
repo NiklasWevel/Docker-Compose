@@ -1,6 +1,6 @@
 services:
   chhoto-url:
-    image: sintan1729/chhoto-url:latest
+    image: sintan1729/chhoto-url:6.0.1
     container_name: chhoto
     restart: unless-stopped
     ports:

@@ -1,6 +1,6 @@
 services:
   app:
-    image: difegue/lanraragi:latest
+    image: difegue/lanraragi:v.0.9.40
     container_name: lanraragi
     restart: unless-stopped
     ports:

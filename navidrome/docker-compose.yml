@@ -1,6 +1,6 @@
 services:
   navidrome:
-    image: deluan/navidrome:latest
+    image: deluan/navidrome:0.55.2
     container_name: navidrome
     restart: unless-stopped
     user: "${UID}:${GID}"

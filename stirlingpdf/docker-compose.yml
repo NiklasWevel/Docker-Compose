@@ -1,6 +1,6 @@
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest
+    image: stirlingtools/stirling-pdf:0.46.1
     container_name: stirling-pdf
     restart: unless-stopped
     ports:

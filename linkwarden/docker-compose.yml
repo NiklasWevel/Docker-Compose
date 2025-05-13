@@ -8,7 +8,7 @@ services:
       - ${VOLUME_SQL}:/var/lib/postgresql/data
 
   linkwarden:
-    image: ghcr.io/linkwarden/linkwarden:latest
+    image: ghcr.io/linkwarden/linkwarden:v2.10.2
     container_name: linkwarden
     restart: always
     ports:

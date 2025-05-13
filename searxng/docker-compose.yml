@@ -1,6 +1,6 @@
 services:
   searxng:
-    image: searxng/searxng:latest
+    image: searxng/searxng:2025.5.12-5d99373
     container_name: searxng
     restart: unless-stopped
     env_file: .env
@@ -23,7 +23,7 @@ services:
       - SETGID
       - SETUID
   gluetun:
-    image: qmcgaw/gluetun:v3.39.1
+    image: qmcgaw/gluetun:v3.4
     container_name: gluetun
     restart: unless-stopped
     ports:
