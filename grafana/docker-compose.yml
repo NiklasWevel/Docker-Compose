@@ -1,0 +1,25 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ${VOLUME_CONFIG}:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "${PORT_9090:-9090}:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - TZ
+      - GF_SECURITY_ADMIN_USER
+      - GF_SECURITY_ADMIN_PASSWORD
+    volumes:
+      - ${VOLUME_DATA}:/var/lib/grafana
+    ports:
+      - "${PORT_3000:-3000}:3000"
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+

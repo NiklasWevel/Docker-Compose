@@ -1,0 +1,32 @@
+services:
+  broker:
+    image: docker.io/library/redis:7
+    container_name: paperless-broker
+    restart: unless-stopped
+    volumes:
+      - ${VOLUME_REDIS_DATA}:/data
+
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: paperless-webserver
+    restart: unless-stopped
+    ports:
+      - "${PORT_8000:-8000}:8000"
+    env_file: .env
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+    volumes:
+      - ${VOLUME_PAPERLESS_DATA}:/usr/src/paperless/data
+      - ${VOLUME_PAPERLESS_DOCUMENTS}:/usr/src/paperless/media/documents/archive/
+      - ${VOLUME_PAPERLESS_ORIGINALS}:/usr/src/paperless/media/documents/originals/
+      - ${VOLUME_PAPERLESS_THUMBNAILS}:/usr/src/paperless/media/documents/thumbnails/
+      - ${VOLUME_PAPERLESS_IMPORT}:/usr/src/paperless/consume
+      - ${VOLUME_PAPERLESS_EXPORT}:/usr/src/paperless/export
+
+    depends_on:
+      - broker
+    deploy:
+      resources:
+        limits:
+          memory: "2G"
+

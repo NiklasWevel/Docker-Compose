@@ -1,0 +1,15 @@
+services:
+  app:
+    image: difegue/lanraragi:latest
+    container_name: lanraragi
+    restart: unless-stopped
+    ports:
+      - "${PORT_3000:-3000}:3000"
+    env_file: .env
+    environment:
+      - TZ
+      - LRR_UID
+      - LRR_GID
+    volumes:
+      - ${VOLUME_CONTENT}:/home/koyomi/lanraragi/content
+      - ${VOLUME_DATABASE}:/home/koyomi/lanraragi/database

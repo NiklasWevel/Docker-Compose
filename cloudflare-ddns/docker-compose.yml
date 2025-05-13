@@ -1,0 +1,21 @@
+services:
+  cloudflare-ddns:
+    image: favonia/cloudflare-ddns:latest
+    container_name: "cloudflare-ddns"
+    restart: always
+    env_file: .env
+    environment:
+      - TZ
+      - CLOUDFLARE_API_TOKEN
+      - IP4_DOMAINS
+      - PROXIED=true
+      - CACHE_EXPIRATION=15m
+    network_mode: host
+    cap_add:
+      - SETUID
+      - SETGID
+    cap_drop:
+      - all
+    read_only: true
+    security_opt:
+      - no-new-privileges:true

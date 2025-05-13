@@ -1,0 +1,17 @@
+services:
+  miner:
+    image: rdavidoff/twitch-channel-points-miner-v2:latest
+    container_name: twitch-viewer
+    restart: unless-stopped
+    ports:
+      - "${PORT_5000:-5000}:5000"
+    env_file: .env
+    environment:
+      - TERM=xterm-256color
+    volumes:
+      - ${VOLUME_ANALYTICS}:/usr/src/app/analytics
+      - ${VOLUME_COOKIES}:/usr/src/app/cookies
+      - ${VOLUME_LOGS}:/usr/src/app/logs
+      - ${VOLUME_RUN}:/usr/src/app/run.py:ro
+    stdin_open: true
+    tty: true

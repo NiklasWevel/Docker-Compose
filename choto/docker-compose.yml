@@ -1,0 +1,14 @@
+services:
+  chhoto-url:
+    image: sintan1729/chhoto-url:latest
+    container_name: chhoto
+    restart: unless-stopped
+    ports:
+      - "${Port_4567:-4567}:4567"
+    env_file: .env
+    environment:
+      - db_url=/db/urls.sqlite
+      - site_url
+      - password
+    volumes:
+      - ${DBVOLUME}:/db

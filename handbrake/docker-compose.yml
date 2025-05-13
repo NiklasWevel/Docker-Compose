@@ -1,0 +1,35 @@
+services:
+  handbrake:
+    image: jlesage/handbrake:latest
+    container_name: handbrake
+    restart: unless-stopped
+    user: "${UID}:${GID}"
+    ports:
+      - "${PORT_5800:-5800}:5800"
+    env_file: .env
+    environment:
+      - USER_ID
+      - GROUP_ID
+      - UMASK
+      - TZ
+      - AUTOMATED_CONVERSION_PRESET
+      - AUTOMATED_CONVERSION_FORMAT
+      - AUTOMATED_CONVERSION_OUTPUT_SUBDIR
+      - AUTOMATED_CONVERSION_KEEP_SOURCE
+      - AUTOMATED_CONVERSION_SOURCE_STABLE_TIME
+      - AUTOMATED_CONVERSION_CHECK_INT
+      - AUTOMATED_CONVERSION_SOURCE_MIN_DURATION
+      - DARK_MODE
+      - DISPLAY_HEIGHT
+      - DISPLAY_WIDTH
+      - AUTOMATED_CONVERSION_INSTALL_PKGS
+    volumes:
+      - "${VOLUME_CONFIG}:/config:rw"
+      - "${VOLUME_STORAGE}:/storage:ro"
+      - "${VOLUME_WATCH1}:/watch:rw"
+      - "${VOLUME_WATCH2}:/watch2:rw"
+      - "${VOLUME_OUTPUT}:/output:rw"
+    deploy:
+      resources:
+        limits:
+          cpus: "3.50"

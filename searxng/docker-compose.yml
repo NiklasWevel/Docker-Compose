@@ -1,0 +1,56 @@
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - SEARXNG_BASE_URL
+    volumes:
+      - ${VOLUME_DATA}:/etc/searxng:rw
+    network_mode: service:gluetun
+    depends_on:
+      - gluetun
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+  gluetun:
+    image: qmcgaw/gluetun:v3.39.1
+    container_name: gluetun
+    restart: unless-stopped
+    ports:
+      - ${PORT_8080:-8080}:8080/tcp
+      - ${PORT_8000:-8000}:8000/tcp
+    env_file: .env
+    environment:
+      - TZ=Europe/Berlin
+      - VPN_SERVICE_PROVIDER
+      - VPN_TYPE
+      - FIREWALL_VPN_INPUT_PORTS
+      - FIREWALL_OUTBOUND_SUBNETS
+      - WIREGUARD_ADDRESSES
+      - WIREGUARD_ENDPOINT_PORT
+      - WIREGUARD_PRESHARED_KEY
+      - WIREGUARD_PRIVATE_KEY
+      - WIREGUARD_PUBLIC_KEY
+      - WIREGUARD_ENDPOINT_IP
+      - PUBLICIP_API
+      - PUBLICIP_API_TOKEN
+    volumes:
+      - ${VOLUME_CONFIG_GLUE}:/gluetun/auth/config.toml
+
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+volumes:
+  searxNG_config:
+    external: true

@@ -1,0 +1,13 @@
+services:
+  flaresolverr:
+    image: 21hsmw/flaresolverr:nodriver
+    container_name: flaresolverr
+    restart: unless-stopped
+    ports:
+      - ${PORT_8191:-8191}:8191
+    env_file: .env
+    environment:
+      - TZ
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER

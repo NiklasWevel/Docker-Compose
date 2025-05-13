@@ -1,0 +1,16 @@
+services:
+  thunderbird:
+    image: jlesage/thunderbird:latest
+    container_name: thunderbird
+    restart: unless-stopped
+    ports:
+      - "${Port_5800:-5800}:5800"
+      - "${Port_5900:-5900}:5900"
+    env_file: .env
+    environment:
+      - TZ
+      - LANG
+      - KEEP_APP_RUNNING
+      - DARK_MODE
+    volumes:
+      - ${VOLUME_CONFIG}:/config:rw

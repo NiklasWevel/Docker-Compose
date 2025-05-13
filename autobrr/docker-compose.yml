@@ -1,0 +1,14 @@
+services:
+  autobrr:
+    image: ghcr.io/autobrr/autobrr:latest
+    container_name: autobrr
+    restart: unless-stopped
+    user: "${UID}:${GID}"
+    ports:
+      - ${PORT_7474:-7474}:7474
+    env_file: .env
+    environment:
+      - TZ
+    volumes:
+      - ${VOLUME_CONFIG}:/config
+      - ${VOLUME_LOG}:/log

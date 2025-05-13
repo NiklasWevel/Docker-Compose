@@ -1,0 +1,12 @@
+services:
+  unpackerr:
+    image: golift/unpackerr
+    container_name: unpackerr
+    restart: unless-stopped
+    user: "${UID}:${GID}"
+    env_file: .env
+    environment:
+      - TZ
+    volumes:
+      - ${VOLUME_SEEDBOX}:/mnt/Seedbox/
+      - ${VOLUME_CONFIG}:/config

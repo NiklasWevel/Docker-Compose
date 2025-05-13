@@ -1,0 +1,20 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: unless-stopped
+    user: "${UID}:${GID}"
+    ports:
+      - ${PORT_3000:-3000}:3000
+    env_file: .env
+    environment:
+      - TZ
+      - HOMEPAGE_ALLOWED_HOSTS
+    volumes:
+      - ${VOLUME_CONFIG}:/app/config
+      - ${VOLUME_IMAGES}:/app/public/images
+      - ${VOLUME_ICONS}:/app/public/icons
+      - ${VOLUME_SIZE1}:${VOLUME_SIZE1}
+      - ${VOLUME_SIZE2}:${VOLUME_SIZE2}
+      - ${VOLUME_SIZE3}:${VOLUME_SIZE3}
+      - ${VOLUME_SIZE4}:${VOLUME_SIZE4}

@@ -1,0 +1,16 @@
+services:
+  free-games-claimer:
+    image: ghcr.io/vogler/free-games-claimer
+    container_name: free-games-claimer
+    restart: unless-stopped
+    ports:
+      - "${PORT_6080:-6080}:6080"
+      - "${PORT_5900:-5900}:5900"
+    env_file: .env
+    environment:
+      - EG_EMAIL
+      - EG_PASSWORD
+      - NOTIFY
+    volumes:
+      - ${VOLUME_DATA}=:/fgc/data
+    command: bash -c "node epic-games; echo sleeping; sleep 1d"
