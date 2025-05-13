@@ -1,0 +1,25 @@
+{
+  "extends": ["config:base"],
+  "labels": ["dependencies"],
+  "enabledManagers": ["docker-compose"],
+  "schedule": ["before 8am every day"],
+  "timezone": "Europe/Berlin",
+  "commitMessageAction": "update",
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "group": false
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["major"],
+      "group": false
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackagePatterns": [".*"],
+      "allowedVersions": "/^v?[0-9]+(\\.[0-9]+){0,2}$/"
+    }
+  ]
+}
