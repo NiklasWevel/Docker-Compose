@@ -1,25 +1,52 @@
 {
-  "extends": ["config:base"],
-  "labels": ["dependencies"],
-  "enabledManagers": ["docker-compose"],
-  "schedule": ["before 8am every day"],
+  "extends": [
+    "config:recommended"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "enabledManagers": [
+    "docker-compose"
+  ],
+  "schedule": [
+    "before 8am"
+  ],
   "timezone": "Europe/Berlin",
   "commitMessageAction": "update",
   "packageRules": [
     {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "group": false
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "group": {
+        "enabled": false
+      }
     },
     {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["major"],
-      "group": false
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "group": {
+        "enabled": false
+      }
     },
     {
-      "matchDatasources": ["docker"],
-      "matchPackagePatterns": [".*"],
-      "allowedVersions": "/^v?[0-9]+(\\.[0-9]+){0,2}$/"
+      "matchDatasources": [
+        "docker"
+      ],
+      "allowedVersions": "/^v?[0-9]+(\\.[0-9]+){0,2}$/",
+      "matchPackageNames": [
+        "/.*/"
+      ]
     }
   ]
 }
