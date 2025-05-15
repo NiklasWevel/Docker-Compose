@@ -1,0 +1,14 @@
+services:
+  vault:
+    image: hashicorp/vault:1.15
+    container_name: hashivault
+    restart: unless-stopped
+    ports:
+      - "${PORT_8200:-8200}:8200"
+    env_file: .env
+    environment:
+      VAULT_LOCAL_CONFIG: ${VAULT_LOCAL_CONFIG}
+    volumes:
+      - ${VOLUME_VAULT_DATA}:/vault/data
+    cap_add:
+      - IPC_LOCK
