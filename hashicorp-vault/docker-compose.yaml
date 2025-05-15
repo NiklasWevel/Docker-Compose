@@ -6,9 +6,9 @@ services:
     ports:
       - "${PORT_8200:-8200}:8200"
     env_file: .env
-    environment:
-      VAULT_LOCAL_CONFIG: ${VAULT_LOCAL_CONFIG}
     volumes:
       - ${VOLUME_VAULT_DATA}:/vault/data
+      - ${VOLUME_VAULT_CONFIG}:/vault/config/vault.hcl
+    command: "vault server -config=/vault/config/vault.hcl"
     cap_add:
       - IPC_LOCK
