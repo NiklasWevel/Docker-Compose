@@ -1,6 +1,6 @@
 services:
   gluetun:
-    image: qmcgaw/gluetun:v3.4
+    image: qmcgaw/gluetun:v3.40
     container_name: gluetun
     restart: unless-stopped
     ports:
