@@ -1,6 +1,6 @@
 services:
   adguardhome-sync:
-    image: ghcr.io/bakito/adguardhome-sync:v0.7.5
+    image: ghcr.io/bakito/adguardhome-sync:v0.7.6
     container_name: adguardhome-sync
     restart: unless-stopped
     user: "${UID}:${GID}"
