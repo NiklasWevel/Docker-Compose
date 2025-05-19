@@ -10,5 +10,6 @@ services:
       - ${VOLUME_VAULT_DATA}:/vault/data
       - ${VOLUME_VAULT_CONFIG}:/vault/config/vault.hcl
     command: "vault server -config=/vault/config/vault.hcl"
+    entrypoint: ["/vault/config/entrypoint.sh"]
     cap_add:
       - IPC_LOCK
