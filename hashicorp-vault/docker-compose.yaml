@@ -3,13 +3,13 @@ services:
     image: hashicorp/vault:1.19
     container_name: hashivault
     restart: unless-stopped
+    user: "0"
     ports:
       - "${PORT_8200:-8200}:8200"
     env_file: .env
     volumes:
       - ${VOLUME_VAULT_DATA}:/vault/data
-      - ${VOLUME_VAULT_CONFIG}:/vault/config/vault.hcl
-    command: "vault server -config=/vault/config/vault.hcl"
+      - ${VOLUME_VAULT_CONFIG}:/vault/config
     entrypoint: ["/vault/config/entrypoint.sh"]
     cap_add:
       - IPC_LOCK
