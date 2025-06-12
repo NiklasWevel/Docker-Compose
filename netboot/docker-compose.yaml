@@ -1,0 +1,19 @@
+services:
+  netbootxyz:
+    image: ghcr.io/netbootxyz/netbootxyz:0.7.6-nbxyz2
+    container_name: netbootxyz
+    restart: unless-stopped
+    ports:
+      - "${Port_3000:-3000}:3000"
+      - "${Port_80:-80}:80"
+      - "69:69/udp"
+    env_file: .env
+    environment:
+      - MENU_VERSION
+      - NGINX_PORT
+      - WEB_APP_PORT
+    volumes:
+      - ${VOLUME_CONFIG}:/config
+      - ${VOLUME_ASSETS}:/assets
+
+
