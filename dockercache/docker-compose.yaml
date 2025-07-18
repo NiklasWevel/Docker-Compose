@@ -25,12 +25,12 @@ services:
     restart: always
     env_file: .env
     environment:
-      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin
-      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Methods
-      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Credentials
-      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Headers
-      REGISTRY_HTTP_HEADERS_Access-Control-Expose-Headers
-      REGISTRY_STORAGE_DELETE_ENABLED
+      - REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin
+      - REGISTRY_HTTP_HEADERS_Access-Control-Allow-Methods
+      - REGISTRY_HTTP_HEADERS_Access-Control-Allow-Credentials
+      - REGISTRY_HTTP_HEADERS_Access-Control-Allow-Headers
+      - REGISTRY_HTTP_HEADERS_Access-Control-Expose-Headers
+      - REGISTRY_STORAGE_DELETE_ENABLED
     volumes:
       - "${VOLUME_CONFIG}:/etc/docker/registry/config.yml:ro"
       - "${VOLUME_STORAGE}:/var/lib/registry"
