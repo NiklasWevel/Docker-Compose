@@ -31,7 +31,7 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
   socks5:
-    image: serjs/go-socks5-proxy:v0.0.3
+    image: serjs/go-socks5-proxy:v0.0.4
     container_name: socks5
     restart: unless-stopped
     network_mode: "service:gluetun"
