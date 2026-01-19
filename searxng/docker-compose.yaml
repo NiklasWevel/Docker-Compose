@@ -23,7 +23,7 @@ services:
       - SETGID
       - SETUID
   gluetun:
-    image: qmcgaw/gluetun:v3.40
+    image: qmcgaw/gluetun:v3.41
     container_name: gluetun
     restart: unless-stopped
     ports:
