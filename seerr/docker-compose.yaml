@@ -1,7 +1,7 @@
 services:
-  jellyseerr:
-    image: fallenbagel/jellyseerr:2.7.3
-    container_name: jellyseerr
+  seerr:
+    image: ghcr.io/seerr-team/seerr:v3.1.0
+    container_name: seerr
     restart: unless-stopped
     ports:
       - ${PORT_5055:-5055}:5055
@@ -11,3 +11,5 @@ services:
       - LOG_LEVEL=debug
     volumes:
       - ${VOLUME_CONFIG}:/app/config
+      - /app/node_modules
+      - /app/.next
