@@ -1,6 +1,6 @@
 services:
   actual_server:
-    image: docker.io/actualbudget/actual-server:26.3.0
+    image: docker.io/actualbudget/actual-server:26.4.0
     container_name: actualbudget
     restart: unless-stopped
     ports:
