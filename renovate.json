@@ -2,7 +2,7 @@
   "extends": ["config:recommended"],
   "labels": ["dependencies"],
   "enabledManagers": ["docker-compose"],
-  "schedule": ["before 8am"],
+  "schedule": ["at any time"],
   "timezone": "Europe/Berlin",
   "commitMessageAction": "update",
   "packageRules": [
