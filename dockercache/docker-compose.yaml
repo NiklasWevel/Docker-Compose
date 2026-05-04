@@ -20,7 +20,7 @@ services:
     
 
   registry-server:
-    image: registry:3.0.0
+    image: registry:3.1.1
     container_name: registry-server
     restart: always
     env_file: .env
